@@ -1,0 +1,290 @@
+:root {
+  --bg: #e8ece8;
+  --bg-elevated: #f4f6f4;
+  --ink: #1a221c;
+  --muted: #5a675e;
+  --line: #c5cdc6;
+  --accent: #1f6b4a;
+  --accent-ink: #f3faf6;
+  --warn: #8a5a12;
+  --danger: #8b2e2e;
+  --radius: 2px;
+  --font-sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -10%, #d5e0d6 0%, transparent 55%),
+    linear-gradient(160deg, #eef1ee 0%, var(--bg) 45%, #dfe6e0 100%);
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 3rem;
+}
+
+.app-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 1.75rem;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.brand-mark {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.brand-sub {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.acting-as {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: flex-end;
+}
+
+.acting-as label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.acting-as select {
+  min-width: 9rem;
+  padding: 0.4rem 0.55rem;
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+}
+
+h1 {
+  font-size: 1.45rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+}
+
+.lede {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+}
+
+.panel {
+  background: color-mix(in srgb, var(--bg-elevated) 92%, white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+table.data th,
+table.data td {
+  text-align: left;
+  padding: 0.65rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+table.data th {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+table.data tbody tr {
+  cursor: pointer;
+}
+
+table.data tbody tr:hover,
+table.data tbody tr.selected {
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.15rem 0.4rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.badge.active,
+.badge.verified {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+}
+
+.badge.retired,
+.badge.pending {
+  color: var(--warn);
+}
+
+.btn {
+  border: 1px solid var(--line);
+  background: var(--bg-elevated);
+  color: var(--ink);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.btn:hover {
+  border-color: var(--muted);
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.form-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.field label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.field input,
+.field select,
+.field textarea {
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: var(--radius);
+}
+
+.field textarea {
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+.muted,
+.status-msg {
+  color: var(--muted);
+}
+
+.error {
+  color: var(--danger);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 0.85rem;
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.audit-entry {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.audit-entry:last-child {
+  border-bottom: none;
+}
+
+.audit-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.change-line {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .acting-as {
+    align-items: flex-start;
+  }
+}

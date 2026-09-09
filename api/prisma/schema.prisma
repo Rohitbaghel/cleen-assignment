@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EquipmentStatus {
+  ACTIVE
+  RETIRED
+}
+
+enum CleaningStatus {
+  PENDING
+  VERIFIED
+}
+
+model Equipment {
+  id        String          @id @default(uuid())
+  name      String
+  code      String          @unique
+  status    EquipmentStatus @default(ACTIVE)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  cleaningRecords CleaningRecord[]
+}
+
+model CleaningRecord {
+  id          String         @id @default(uuid())
+  equipmentId String
+  equipment   Equipment      @relation(fields: [equipmentId], references: [id], onDelete: Cascade)
+  cleanedBy   String
+  cleanedAt   DateTime
+  method      String
+  notes       String?
+  status      CleaningStatus @default(PENDING)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  auditEntries AuditEntry[]
+
+  @@index([equipmentId, cleanedAt, id])
+}
+
+model AuditEntry {
+  id               String         @id @default(uuid())
+  cleaningRecordId String
+  cleaningRecord   CleaningRecord @relation(fields: [cleaningRecordId], references: [id], onDelete: Cascade)
+  changedBy        String
+  changedAt        DateTime       @default(now())
+  changes          Json
+
+  @@index([cleaningRecordId, changedAt])
+}
